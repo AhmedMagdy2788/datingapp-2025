@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: ["light", "tropical"];
+  defaultTheme: "tropical";
+};
+
+/* Tropical Paradise Theme */
+@plugin "daisyui/theme" {
+  name: "tropical";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  /* Base colors - warm sand and ocean */
+  --color-base-100: oklch(98% 0.02 85);  /* Light sand */
+  --color-base-200: oklch(95% 0.03 85);  /* Warm sand */
+  --color-base-300: oklch(92% 0.04 85);  /* Deep sand */
+  --color-base-content: oklch(25% 0.05 85); /* Dark coconut */
+
+  /* Primary - Vibrant turquoise */
+  --color-primary: oklch(70% 0.2 195);    /* Turquoise blue */
+  --color-primary-content: oklch(98% 0.01 195);
+
+  /* Secondary - Coral pink */
+  --color-secondary: oklch(75% 0.25 25);  /* Coral */
+  --color-secondary-content: oklch(98% 0.01 25);
+
+  /* Accent - Tropical flower */
+  --color-accent: oklch(65% 0.3 65);     /* Hibiscus pink */
+  --color-accent-content: oklch(98% 0.01 65);
+
+  /* Neutral - Palm frond */
+  --color-neutral: oklch(45% 0.15 145);   /* Deep green */
+  --color-neutral-content: oklch(98% 0.01 145);
+
+  /* Info - Ocean blue */
+  --color-info: oklch(70% 0.2 220);      /* Clear sky */
+  --color-info-content: oklch(98% 0.01 220);
+
+  /* Success - Lush vegetation */
+  --color-success: oklch(65% 0.25 155);   /* Tropical leaf */
+  --color-success-content: oklch(98% 0.01 155);
+
+  /* Warning - Mango */
+  --color-warning: oklch(80% 0.25 85);    /* Ripe mango */
+  --color-warning-content: oklch(25% 0.05 85);
+
+  /* Error - Passionate red */
+  --color-error: oklch(65% 0.3 30);      /* Red flower */
+  --color-error-content: oklch(98% 0.01 30);
+
+  /* Rounded corners for a soft, organic feel */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+
+  /* Other properties */
+  --border: 1px;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  
+  /* Add subtle depth for dimension */
+  --depth: 1;
+  --noise: 0;
+}
