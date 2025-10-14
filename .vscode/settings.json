@@ -1,9 +1,15 @@
 {
     "cSpell.words": [
+        "Creds",
         "daisyui",
         "Dtos",
         "hmac",
         "HMACSHA",
         "prefersdark"
-    ]
+    ],
+    "angular-schematics.schematicsDefaultOptions": {
+        "angular-*": {
+            "externalTemplate": true
+        }
+    }
 }

@@ -13,7 +13,7 @@ public static class AppUserExtensions
         {
             Id = user.Id,
             Email = user.Email,
-            username = user.UserName,
+            Username = user.UserName,
             Token = tokenService.CreateToken(user),
             DateOfBirth = user.DateOfBirth == DateTime.MinValue ? null : user.DateOfBirth
         };

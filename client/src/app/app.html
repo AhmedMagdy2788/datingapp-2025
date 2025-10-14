@@ -1,11 +1,2 @@
-<div class="card bg-bae-100 w-1/2 mx-auto p-10 mt-10 shadow-xl">
-  <h2 class="text-3xl text-red-500 font-bold">{{title()}}</h2>
-  <ul class="list">
-    @for(member of members(); track member.id){
-    <li class="list-row justify-between items-center w-full">
-      <img src="/user.png" alt="user avatar" class="size-12 rounded-box" />
-      <span class="text-xl">{{member.userName}}</span>
-    </li>
-    }
-  </ul>
-</div>
+<app-nav/>
+<router-outlet/>

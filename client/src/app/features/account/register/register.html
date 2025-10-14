@@ -1,0 +1,47 @@
+<section class="card bg-base-100 w-1/2 mx-auto flex flex-col p-6 rounded-lg shadow-lg">
+  <h1 class="card-title justify-center text-3xl text-primary">Sign Up</h1>
+  <form
+    #registrationForm="ngForm"
+    (ngSubmit)="register()"
+    class="card-body flex flex-col justify-center items-center gap-3 w-full"
+  >
+    <input
+      type="text"
+      name="username"
+      placeholder="username"
+      class="input w-full"
+      [(ngModel)]="registerCreds.username"
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="email"
+      class="input w-full"
+      [(ngModel)]="registerCreds.email"
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="password"
+      class="input w-full"
+      [(ngModel)]="registerCreds.password"
+    />
+    <input
+      type="date"
+      name="dateOfBirth"
+      placeholder="date of birth"
+      class="input w-full"
+      [(ngModel)]="registerCreds.dateOfBirth"
+    />
+    <select name="members" id="members" class="select w-full">
+        <option disabled selected>pick a member</option>
+        @for (member of members(); track member.id) {
+            <option [value]="member.id">{{member.userName}}</option>
+        }
+    </select>
+    <div class="flex flex-row gap-3 justify-end w-full">
+      <button type="button" class="btn btn-outline" (click)="cancelRegister()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+  </form>
+</section>
