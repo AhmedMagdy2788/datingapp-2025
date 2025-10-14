@@ -12,7 +12,7 @@ export interface LoginCreds{
     password: string;
 }
 export interface RegisterCreds{
-    username: string;
+    userName: string;
     email: string;
     password: string;
     dateOfBirth: Date;

@@ -16,7 +16,7 @@ export class Register {
   protected registerCreds: RegisterCreds;
   constructor(protected accountService: AccountService) {
     this.registerCreds = {
-      username: '',
+      userName: '',
       email: '',
       password: '',
       dateOfBirth: new Date(Date.now()),

@@ -17,12 +17,12 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
     [HttpPost("register")] //POST: api/account/register
     public async Task<ActionResult<AppUser>> Register([FromBody] RegisterDto registerDto)
     {
-        if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
+        if (await UserExists(registerDto.UserName)) return BadRequest("Username is taken");
         if (await EmailExists(registerDto.Email)) return BadRequest("Email is taken");
         using var hmac = new HMACSHA512();
         var user = new AppUser
         {
-            UserName = registerDto.Username.ToLower(),
+            UserName = registerDto.UserName.ToLower(),
             Email = registerDto.Email.ToLower(),
             PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
             PasswordSalt = hmac.Key,
