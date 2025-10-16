@@ -1,0 +1,7 @@
+<section>
+   <div class="flex flex-row flex-wrap justify-center items-center gap-3">
+    @for (item of members(); track $index) {
+        <app-member-card [member]="item" class="mb-4 min-w-[300px]"/>
+    }
+   </div>
+</section>

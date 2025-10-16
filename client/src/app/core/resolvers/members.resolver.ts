@@ -16,3 +16,18 @@ export const MembersResolver: ResolveFn<User[]> = (
     })
   );
 };
+
+export const MemberResolver: ResolveFn<User> = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  const httpClient = inject(HttpClient);
+  const id = route.paramMap.get('id');
+  return httpClient.get<User>(`https://localhost:7053/api/members/${id}`).pipe(
+    catchError((error) => {
+      console.error(`Failed to load member with id ${id}:`, error);
+      // Redirect to a not-found page or similar
+      return of({ redirectTo: '/not-found' } as any);
+    })
+  );
+}

@@ -10,15 +10,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  members = signal<User[]>([]);
+  
   protected registerMode = signal(false);
 
   protected toggleRegisterMode() {
     this.registerMode.update((current) => !current);
   }
-  constructor(private route: ActivatedRoute) {
-    this.members.set(this.route.snapshot.data['members']);
-  }
+ 
   onRegisterSuccess(user: User) {
     console.log('Registration successful:', user);
     this.registerMode.set(false);

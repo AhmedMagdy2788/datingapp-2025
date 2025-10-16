@@ -1,0 +1,13 @@
+<section>
+  <div class="flex flex-row justify-center items-center mt-24 gap-4 w-full">
+    <img
+      [src]="memberDetails()?.imageUrl ?? './user.png'"
+      alt="user avatar"
+      class="w-[150px] h-[150px] mask-cover rounded-full border-[2px] border-base-300 shadow-md"
+    />
+    <div class="flex flex-col justify-start items-start gap-3">
+      <h2 class="capitalize text-4xl text-primary">{{ memberDetails()?.userName }}</h2>
+      <p>Age: {{ memberAge() ?? '-' }}</p>
+    </div>
+  </div>
+</section>

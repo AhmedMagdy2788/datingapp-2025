@@ -7,6 +7,7 @@ using API.Entities;
 using API.Extensions;
 using API.Interfaces;
 using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,7 +33,7 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
         await context.SaveChangesAsync();
         return Ok(user.ToDto(tokenService));
     }
-    
+
     [HttpPost("login")] //POST: api/account/login
     public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
     {
@@ -45,6 +46,17 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
             if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
         }
         return Ok(user.ToDto(tokenService));
+    }
+    
+    [Authorize]
+    [HttpPost("logout")] //GET: api/account/logout
+    public  ActionResult<bool> Logout()
+    {
+        // In a stateless JWT authentication system, logout is typically handled on the client side
+        // by simply deleting the token. However, if you want to implement server-side logout,
+        // you would need to maintain a token blacklist or change the token's validity in some way.
+        // Here, we'll just return true to indicate that the logout was "successful".
+        return Ok(true);
     }
 
     private async Task<bool> UserExists(string username)

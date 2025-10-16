@@ -1,2 +1,5 @@
 <app-nav/>
-<router-outlet/>
+<main [class.mt-24]="router.url !== '/home'" class="container mx-auto">
+    <router-outlet/>
+</main>
+
