@@ -11,6 +11,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { authorizeRequestsInterceptor } from './core/interceptors/AuthorizeRequests.interceptor';
 import { InitService } from './core/services/Init.service';
 import { lastValueFrom } from 'rxjs';
+import { errorsInterceptor } from './core/interceptors/Errors.interceptor';
 
 // Unfortunately, `withFetch()` uses the Fetch API under the hood, which does not natively support tracking upload progress in the same way as XMLHttpRequest.
 // If you need to track upload or download progress, you should avoid using `withFetch()` and rely on the default Angular HttpClient (which uses XMLHttpRequest).
@@ -22,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideHttpClient(
-      withInterceptors([authorizeRequestsInterceptor])
+      withInterceptors([authorizeRequestsInterceptor, errorsInterceptor])
       // Do NOT use withFetch() if you need progress tracking
     ),
     provideAppInitializer(async () => {

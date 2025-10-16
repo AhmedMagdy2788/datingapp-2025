@@ -1,5 +1,4 @@
 import type { HttpInterceptorFn } from '@angular/common/http';
-import { User } from '../../types/user';
 import { inject } from '@angular/core';
 import { AccountService } from '../services/account.service';
 

@@ -10,6 +10,30 @@
           "style": "css",
           "skipTests": true,
           "path": "src/app"
+        },
+        "@schematics/angular:guard": {
+          "path": "src/app/core/guards",
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "path": "src/app/core/services",
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "path": "src/app/core/interceptors",
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "path": "src/app/core/resolvers",
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "path": "src/app/shared/directives",
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "path": "src/app/shared/pipes",
+          "skipTests": true
         }
       },
       "root": "",
