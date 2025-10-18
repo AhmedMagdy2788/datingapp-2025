@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   inject,
+  InjectionToken,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
@@ -12,6 +13,10 @@ import { authorizeRequestsInterceptor } from './core/interceptors/AuthorizeReque
 import { InitService } from './core/services/Init.service';
 import { lastValueFrom } from 'rxjs';
 import { errorsInterceptor } from './core/interceptors/Errors.interceptor';
+import { environment } from '../environments/environment';
+
+// Global API URL token
+export const BASE_API_URL = new InjectionToken<string>('BASE_API_URL');
 
 // Unfortunately, `withFetch()` uses the Fetch API under the hood, which does not natively support tracking upload progress in the same way as XMLHttpRequest.
 // If you need to track upload or download progress, you should avoid using `withFetch()` and rely on the default Angular HttpClient (which uses XMLHttpRequest).
@@ -43,6 +48,7 @@ export const appConfig: ApplicationConfig = {
         }, 1000); // Simulate some delay for initialization
       });
     }),
+    { provide: BASE_API_URL, useValue: environment.apiUrl },
   ],
 };
 

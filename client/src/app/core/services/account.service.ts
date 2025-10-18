@@ -1,14 +1,15 @@
 import { RegisterCreds } from './../../types/user';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { LoginCreds, User } from '../../types/user';
 import { catchError, filter, Observable, of, tap } from 'rxjs';
+import { BASE_API_URL } from '../../app.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  baseUrl = 'https://localhost:7053/api/';
+  baseUrl = inject(BASE_API_URL);
   currentUser = signal<User | null>(null);
   constructor(private http: HttpClient) {}
 

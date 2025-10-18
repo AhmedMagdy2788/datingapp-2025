@@ -1,16 +1,27 @@
-import { Component, computed, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { User } from '../../../types/user';
+import { Component, computed, input, signal, DestroyRef } from '@angular/core';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+import { MemberEntity } from '../../../types/member';
+import { filter, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AgePipe } from '../../../shared/pipes/Age.pipe';
 
 @Component({
   selector: 'app-member-detailed',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet, AgePipe],
   templateUrl: './member-detailed.html',
-  styleUrl: './member-detailed.css'
+  styleUrl: './member-detailed.css',
 })
 export class MemberDetailed {
-  id = signal<string | null>(null);
-  memberDetails = signal<User | null>(null);
+  id = input<string | null>(null);
+  protected title = signal<string | undefined>(undefined);
+  memberDetails = signal<MemberEntity | null>(null);
   memberAge = computed(() => {
     if (!this.memberDetails()) return null;
     const today = new Date();
@@ -22,8 +33,29 @@ export class MemberDetailed {
     }
     return age;
   });
-  constructor(private route: ActivatedRoute) {
-    this.id.set(this.route.snapshot.paramMap.get('id'));
-    this.memberDetails.set(this.route.snapshot.data['member']);
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private destroyRef: DestroyRef
+  ) {
+    // this.id.set(this.route.snapshot.paramMap.get('id'));
+    this.route.data
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((data) => !!data),
+        tap((data) => this.memberDetails.set(data['member']))
+      )
+      .subscribe();
+    // this.memberDetails.set(this.route.snapshot.data['member']);
+  }
+
+  ngOnInit() {
+    this.title.set(this.route.firstChild?.snapshot?.title);
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        tap((event) => this.title.set(this.route.firstChild?.snapshot?.title))
+      )
+      .subscribe();
   }
 }

@@ -15,7 +15,8 @@ public static class AppUserExtensions
             Email = user.Email,
             UserName = user.UserName,
             Token = tokenService.CreateToken(user),
-            DateOfBirth = user.DateOfBirth == DateTime.MinValue ? null : user.DateOfBirth
+            DateOfBirth = user.DateOfBirth == DateTime.MinValue ? null : user.DateOfBirth,
+            ImageUrl = user.ImageUrl
         };
     }
     public static int GetAge(this DateTime dateOfBirth)
